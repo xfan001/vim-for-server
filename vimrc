@@ -250,3 +250,21 @@ cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+" execute
+" F10 to run c/cpp/java/python/bash
+map <F10> :call CompileRun()<CR>
+func! CompileRun()
+exec "w"
+if expand('%:e') == "c"
+    exec "!gcc % -o %<.zc&&./%<.zc"
+elseif expand('%:e') == "cpp"
+    exec "!g++ % -o %<.zcpp&&./%<.zcpp"
+elseif expand('%:e') == "java"
+    exec "!javac %&&java %:r"
+elseif expand('%:e') == "py"
+    exec "!python %"
+elseif expand('%:e') == "sh"
+    exec "!sh %"
+endif
+endfun
