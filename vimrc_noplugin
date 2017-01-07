@@ -252,7 +252,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " execute
-" F10 to run c/cpp/java/python/bash
+" F10 to run c/cpp/java/python/bash/go
 map <F10> :call CompileRun()<CR>
 func! CompileRun()
 exec "w"
@@ -266,5 +266,7 @@ elseif expand('%:e') == "py"
     exec "!python %"
 elseif expand('%:e') == "sh"
     exec "!sh %"
+elseif expand('%:e') == "go"
+    exec "!go run %"
 endif
 endfun
